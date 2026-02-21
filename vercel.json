@@ -2,23 +2,23 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/api/server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
+      "src": "api/index.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "src/**",
+          "node_modules/**",
+          "public/**",
+          "schema.sql",
+          "data/**"
+        ]
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
+      "dest": "/api/index.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
