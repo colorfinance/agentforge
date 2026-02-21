@@ -1,0 +1,19 @@
+✅ Schema loaded
+✅ Database initialized
+📅 Initializing cron jobs...
+📅 Scheduled: execution-queue (* * * * *)
+📅 Scheduled: pending-transactions (*/5 * * * *)
+📅 Scheduled: daily-stats (0 0 * * *)
+📅 Scheduled: cleanup (0 3 * * 0)
+✅ Cron jobs initialized
+
+🚀 AI Skills Marketplace API v1.0.0
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌐 Server: http://0.0.0.0:3000
+📍 Health: http://0.0.0.0:3000/health
+🔗 API Base: http://0.0.0.0:3000/api
+🎨 UI: http://0.0.0.0:3000/
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        
+🔄 Running cron job: execution-queue
+❌ Cron job execution-queue failed: Cannot read properties of null (reading 'prepare')

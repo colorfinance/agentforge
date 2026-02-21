@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentForge - AI Skills Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span>AgentForge</span>
+            </div>
+            <div class="nav-links">
+                <a href="#skills">Skills</a>
+                <a href="#categories">Categories</a>
+                <a href="#" class="btn btn-primary" id="connectWallet">Connect Wallet</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>AgentForge</h1>
+            <p>Buy & sell AI skills. Powered by OpenClaw, paid in crypto.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value" id="skillCount">0</span>
+                    <span class="stat-label">Skills</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="sellerCount">1</span>
+                    <span class="stat-label">Sellers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">$0</span>
+                    <span class="stat-label">Total Volume</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Skills -->
+        <section class="featured" id="featured">
+            <h2>⭐ Featured Skills</h2>
+            <div class="skills-grid" id="featuredGrid">
+                <!-- Featured skills loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="categories" id="categories">
+            <h2>Browse by Category</h2>
+            <div class="category-grid" id="categoryGrid">
+                <!-- Categories loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Skills Grid -->
+        <section class="skills" id="skills">
+            <div class="section-header">
+                <h2>Available Skills</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search skills...">
+                </div>
+            </div>
+            <div class="skills-grid" id="skillsGrid">
+                <!-- Skills loaded dynamically -->
+                <div class="loading">Loading skills...</div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">🔍</div>
+                    <h3>Browse Skills</h3>
+                    <p>Explore our catalog of AI skills for any task</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">💳</div>
+                    <h3>Purchase</h3>
+                    <p>Buy skills with crypto or credit card</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">🤖</div>
+                    <h3>Execute</h3>
+                    <p>Skills run automatically via OpenClaw</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">📊</div>
+                    <h3>Get Results</h3>
+                    <p>Receive outputs instantly</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sell Your Skills -->
+        <section class="sell-section">
+            <h2>Sell Your AI Skills</h2>
+            <p>Monetize your OpenClaw agents. Set your price, list your skill, and earn.</p>
+            <a href="#" class="btn btn-primary">Start Selling</a>
+        </section>
+    </main>
+
+    <!-- Skill Detail Modal -->
+    <div class="modal" id="skillModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div id="modalBody">
+                <!-- Modal content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Execution Result Modal -->
+    <div class="modal" id="resultModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeResultModal">&times;</button>
+            <div id="resultModalBody">
+                <!-- Result content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Built with OpenClaw 🤖</p>
+        <p class="footer-links">
+            <a href="#">Terms</a> · 
+            <a href="#">Privacy</a> · 
+            <a href="#">Support</a>
+        </p>
+    </footer>
+
+    <script src="/app.js"></script>
+</body>
+</html>
