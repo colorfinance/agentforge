@@ -48,6 +48,119 @@ async function seedData() {
 
     // Create initial skills
     const skills = [
+        // Featured Skills
+        {
+            name: 'Content Generator',
+            description: 'Generate a blog post or article from a topic outline.',
+            category: 'marketing',
+            price: 15.00,
+            featured: true,
+            input_schema: JSON.stringify({
+                type: 'object',
+                properties: {
+                    topic: { type: 'string', description: 'Main topic or headline' },
+                    keywords: { type: 'array', items: { type: 'string' }, description: 'SEO keywords to include' },
+                    word_count: { type: 'integer', default: 1000 },
+                    tone: { type: 'string', enum: ['professional', 'casual', 'technical'], default: 'professional' }
+                },
+                required: ['topic']
+            })
+        },
+        {
+            name: 'Crypto Scanner',
+            description: 'Scan for altcoins with momentum and volume spikes.',
+            category: 'finance',
+            price: 10.00,
+            featured: true,
+            input_schema: JSON.stringify({
+                type: 'object',
+                properties: {
+                    min_market_cap: { type: 'integer', default: 1000000, description: 'Minimum market cap' },
+                    min_volume: { type: 'integer', default: 50000, description: 'Minimum 24h volume' },
+                    timeframe: { type: 'string', enum: ['1h', '24h', '7d'], default: '24h' }
+                }
+            })
+        },
+        {
+            name: 'Web Research',
+            description: 'Deep research on any topic with sources and citations.',
+            category: 'research',
+            price: 25.00,
+            featured: true,
+            input_schema: JSON.stringify({
+                type: 'object',
+                properties: {
+                    topic: { type: 'string', description: 'Research topic or question' },
+                    sources_needed: { type: 'integer', default: 5, description: 'Number of sources' },
+                    format: { type: 'string', enum: ['summary', 'detailed', 'report'], default: 'summary' }
+                },
+                required: ['topic']
+            })
+        },
+        // Premium Crypto Skills
+        {
+            name: 'Liquidity & Volume Bot',
+            description: 'Automated trading bot for DEX liquidity and volume. Trades on Uniswap, Raydium, PancakeSwap.',
+            category: 'finance',
+            price: 500.00,
+            price_type: 'subscription',
+            input_schema: JSON.stringify({
+                type: 'object',
+                properties: {
+                    token_address: { type: 'string', description: 'Token contract address' },
+                    dex: { type: 'string', enum: ['uniswap', 'raydium', 'pancakeswap'], default: 'uniswap' },
+                    trade_amount: { type: 'number', description: 'Amount per trade (in ETH/SOL)' },
+                    frequency: { type: 'string', enum: ['aggressive', 'normal', 'slow'], default: 'normal' },
+                    duration_hours: { type: 'integer', description: 'How long to run', default: 24 }
+                },
+                required: ['token_address', 'dex', 'trade_amount']
+            })
+        },
+        {
+            name: 'Whale Tracker',
+            description: 'Track smart money movements. Get alerts when wallets with >$1M move into tokens.',
+            category: 'finance',
+            price: 100.00,
+            input_schema: JSON.stringify({
+                type: 'object',
+                properties: {
+                    watch_amount: { type: 'number', default: 1000000, description: 'Minimum wallet value to track' },
+                    notify_telegram: { type: 'boolean', default: false, description: 'Send Telegram alerts' }
+                }
+            })
+        },
+        {
+            name: 'IDO Launcher',
+            description: 'Launch your token on DEX with initial liquidity. Full setup on Uniswap/Raydium.',
+            category: 'finance',
+            price: 1000.00,
+            input_schema: JSON.stringify({
+                type: 'object',
+                properties: {
+                    token_name: { type: 'string', description: 'Token name' },
+                    token_symbol: { type: 'string', description: 'Token symbol (e.g., MYT)' },
+                    initial_liquidity: { type: 'number', description: 'Initial liquidity in ETH/SOL' },
+                    dex: { type: 'string', enum: ['uniswap', 'raydium'], default: 'uniswap' }
+                },
+                required: ['token_name', 'token_symbol', 'initial_liquidity']
+            })
+        },
+        {
+            name: 'Portfolio Manager',
+            description: 'AI-powered portfolio rebalancing and yield optimization across DeFi.',
+            category: 'finance',
+            price: 200.00,
+            price_type: 'subscription',
+            input_schema: JSON.stringify({
+                type: 'object',
+                properties: {
+                    portfolio_value: { type: 'number', description: 'Total portfolio value in USD' },
+                    risk_level: { type: 'string', enum: ['low', 'medium', 'high'], default: 'medium' },
+                    rebalance_frequency: { type: 'string', enum: ['daily', 'weekly', 'monthly'], default: 'weekly' }
+                }
+            })
+        },
+        // Original Skills
         {
             name: 'Email Triage',
             description: 'Sort and prioritize your inbox. Identify urgent emails and categorize the rest.',
@@ -78,22 +191,6 @@ async function seedData() {
             })
         },
         {
-            name: 'Content Generator',
-            description: 'Generate a blog post or article from a topic outline.',
-            category: 'marketing',
-            price: 15.00,
-            input_schema: JSON.stringify({
-                type: 'object',
-                properties: {
-                    topic: { type: 'string', description: 'Main topic or headline' },
-                    keywords: { type: 'array', items: { type: 'string' }, description: 'SEO keywords to include' },
-                    word_count: { type: 'integer', default: 1000 },
-                    tone: { type: 'string', enum: ['professional', 'casual', 'technical'], default: 'professional' }
-                },
-                required: ['topic']
-            })
-        },
-        {
             name: 'Competitor Monitor',
             description: 'Weekly summary of competitor activities and market changes.',
             category: 'marketing',
@@ -106,35 +203,6 @@ async function seedData() {
                     frequency: { type: 'string', enum: ['daily', 'weekly'], default: 'weekly' }
                 },
                 required: ['competitors']
-            })
-        },
-        {
-            name: 'Web Research',
-            description: 'Deep research on any topic with sources and citations.',
-            category: 'research',
-            price: 25.00,
-            input_schema: JSON.stringify({
-                type: 'object',
-                properties: {
-                    topic: { type: 'string', description: 'Research topic or question' },
-                    sources_needed: { type: 'integer', default: 5, description: 'Number of sources' },
-                    format: { type: 'string', enum: ['summary', 'detailed', 'report'], default: 'summary' }
-                },
-                required: ['topic']
-            })
-        },
-        {
-            name: 'Crypto Scanner',
-            description: 'Scan for altcoins with momentum and volume spikes.',
-            category: 'finance',
-            price: 10.00,
-            input_schema: JSON.stringify({
-                type: 'object',
-                properties: {
-                    min_market_cap: { type: 'integer', default: 1000000, description: 'Minimum market cap' },
-                    min_volume: { type: 'integer', default: 50000, description: 'Minimum 24h volume' },
-                    timeframe: { type: 'string', enum: ['1h', '24h', '7d'], default: '24h' }
-                }
             })
         },
         {
@@ -177,7 +245,8 @@ async function seedData() {
             category: skill.category,
             input_schema: skill.input_schema,
             price: skill.price,
-            price_type: 'execution'
+            price_type: skill.price_type || 'execution',
+            is_featured: skill.featured ? 1 : 0
         });
     }
 
