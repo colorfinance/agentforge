@@ -484,35 +484,38 @@ app.use((err, req, res, next) => {
 });
 
 // ====================
-// Start Server
+// Start Server (Local only)
 // ====================
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
-async function start() {
-    // Initialize database
-    await initDatabase();
-    
-    // Start cron jobs
-    initCronJobs();
-    
-    // Start server
-    app.listen(PORT, HOST, () => {
-        console.log(`
-🚀 AI Skills Marketplace API v1.0.0
+// Only start server locally - Vercel handles the server
+if (!process.env.VERCEL) {
+    async function start() {
+        // Initialize database
+        await initDatabase();
+        
+        // Start cron jobs (local only)
+        initCronJobs();
+        
+        // Start server
+        app.listen(PORT, HOST, () => {
+            console.log(`
+🚀 AgentForge API v1.0.0
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🌐 Server: http://${HOST}:${PORT}
 📍 Health: http://${HOST}:${PORT}/health
 🔗 API Base: http://${HOST}:${PORT}/api
 🎨 UI: http://${HOST}:${PORT}/
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        `);
+            `);
+        });
+    }
+    
+    start().catch(err => {
+        console.error('Failed to start:', err);
+        process.exit(1);
     });
 }
-
-start().catch(err => {
-    console.error('Failed to start:', err);
-    process.exit(1);
-});
 
 module.exports = app;
